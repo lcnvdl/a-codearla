@@ -1,0 +1,14 @@
+@startuml
+interface "Saldo Wallet" as SW
+interface "Movimientos Wallet" as MW
+
+[BSC Payments Processor]
+[App Backend]
+
+SW-[BSC Payments Processor]
+[BSC Payments Processor]-MW
+
+SW<..[App Backend]: Obtiene
+MW<..[App Backend]: Obtiene/Agrega (descuento)
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+object Wallet {
+  id: string = "0xa07545707E0a0a0b87F25233e79034BC00f745B0"
+  balance: number = 10
+}
+
+object Transaction {
+  transactionId: string
+  walletId: string
+  date: Date
+  description: string
+  from: string
+  to: string
+  amount: number
+  currencyId: number
+}
+
+object Currency {
+  id: number
+  name: string
+  symbol: string
+  decimals: number
+  contract: string
+  url: string
+}
+
+Transaction "many" --* "1" Wallet
+Currency "1" --o "many" Transaction
+
+@enduml

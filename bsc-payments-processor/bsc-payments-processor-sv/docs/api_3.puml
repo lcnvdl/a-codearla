@@ -1,0 +1,9 @@
+@startuml
+Timer -> Servidor: procesarMovimientos()
+Servidor -> Servidor: obtenerUltimaTransaccion(serverWallet)
+Servidor -> BaseDatos
+BaseDatos --> Servidor: ultimaTransaccion
+Servidor -> BSCScan: obtenerTransacciones(serverWallet, ultimaTransaccion)
+BSCScan --> Servidor: transacciones
+Servidor --> BaseDatos: guardarTransacciones(transacciones)
+@enduml

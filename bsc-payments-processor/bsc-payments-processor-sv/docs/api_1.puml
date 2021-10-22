@@ -1,0 +1,6 @@
+@startuml
+Cliente -> Servidor: obtenerSaldo(walletId)
+Servidor -> BaseDatos
+BaseDatos --> Servidor
+Servidor --> Cliente: saldoWallet()
+@enduml
