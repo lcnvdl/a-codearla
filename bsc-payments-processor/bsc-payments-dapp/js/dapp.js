@@ -32,6 +32,19 @@ $(function () {
     return result;
   }
 
+  async function transferToken(web3, account, targetWallet, usdtAddress, usdtABI, amount) {
+    var contract = new web3.eth.Contract(usdtABI, usdtAddress);
+
+    // var balance = await contract.methods.balanceOf(account).call();
+    // console.log({ balance });
+
+    var bn = new BigNumber(amount).multipliedBy(new BigNumber(10).pow(18));
+    var result = await contract.methods.transfer(targetWallet, bn.toString()).send({ from: account });
+
+    return result;
+  }
+
   window.connectProvider = connectProvider;
   window.requestAccount = requestAccount;
+  window.transferToken = transferToken;
 });
