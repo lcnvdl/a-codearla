@@ -1,17 +1,30 @@
 $(function () {
-  async function connectProvider() {
+  var isAutoconnecting = false;
+
+  function reload() {
+    if (!isAutoconnecting && !location.search) {
+      location.href = location.href + "?autoconnect=true";
+    }
+    else {
+      location.reload();
+    }
+  }
+
+  async function connectProvider(autoConnecting) {
+    isAutoconnecting = autoConnecting;
+
     var provider = await detectEthereumProvider({ timeout: 15000 });
 
     provider.on('chainChanged', function () {
-      location.reload();
+      reload();
     });
 
     provider.on('accountsChanged', function () {
-      location.reload();
+      reload();
     });
 
     provider.on('disconnect', function () {
-      location.reload();
+      reload();
     });
 
     console.log({ provider });
