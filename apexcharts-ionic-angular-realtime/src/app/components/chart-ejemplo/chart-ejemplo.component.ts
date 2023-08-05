@@ -22,10 +22,9 @@ export type ChartOptions = {
   styleUrls: ['./chart-ejemplo.component.scss'],
 })
 export class ChartEjemploComponent implements OnInit {
-  @ViewChild('chartEnTiempoReal') chart: ChartComponent;
+  @ViewChild('realTimePricesChart') chart: ChartComponent;
 
   chartOptions: ChartOptions;
-
 
   constructor() {
   }
@@ -75,26 +74,26 @@ export class ChartEjemploComponent implements OnInit {
     //  Llama al evento "resize", actualizando el chart.
     setTimeout(() => (window as any).dispatchEvent(new Event('resize')), 1);
 
-    //  Obtener nuevos datos
-    const newPrices = [...series.monthDataSeries1.prices];
-    const newDates = [...series.monthDataSeries1.dates];
+    //  Llenado de datos en tiempo real
+    const newPrices: number[] = [...series.monthDataSeries1.prices];
+    const newDates: string[] = [...series.monthDataSeries1.dates];
     let newDate = new Date(2017, 11, 8);
 
     setInterval(() => {
-      const nuevoDato = newPrices[newPrices.length - 1] * (0.5 + Math.random());
-      newPrices.shift();
-      newPrices.push(nuevoDato);
-
       newDate = new Date(newDate.getTime() + 1000 * 60 * 60 * 24);
       newDates.shift();
       newDates.push(newDate.toISOString());
 
       this.chart.updateOptions({
-        labels: [...newDates]
-      });
+        labels: newDates
+      }, true, true);
+
+      const newValue = newPrices[newPrices.length - 1] * (0.5 + Math.random());
+      newPrices.shift();
+      newPrices.push(newValue);
 
       this.chart.updateSeries([{
-        data: [...newPrices]
+        data: newPrices
       }], true);
     }, 1000);
   }
