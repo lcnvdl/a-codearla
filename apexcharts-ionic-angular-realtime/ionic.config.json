@@ -1,0 +1,7 @@
+{
+  "name": "apexcharts-ionic-angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
