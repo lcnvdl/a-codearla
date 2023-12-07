@@ -13,7 +13,7 @@ Si tenemos 100 proyectos que utilizan la misma librería, en la misma versión, 
 
 Les dejo un enlace al video en el que explico en detalle cómo funciona.
 
-FILLME
+[Ver video](https://www.youtube.com/watch?v=Dxp0VaEkAu0&ab_channel=ACodearla)
 
 ## Links
 * Sitio oficial de pnpm: [https://pnpm.io/es/](https://pnpm.io/es/).
